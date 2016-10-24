@@ -2,6 +2,7 @@ package com.pubsub.temperature_simulation;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
+import javax.jms.DeliveryMode;
 import javax.jms.JMSException;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
@@ -34,6 +35,7 @@ public class TemperatureSensor implements Runnable
 	    session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 	    Topic topic = session.createTopic(topicName);
 	    messageProducer = session.createProducer(topic);
+	    messageProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
 	    temperature = getTemperature();
 	    logger.info("Temperature at location: " + topicName + " is : " + temperature);
 	}
