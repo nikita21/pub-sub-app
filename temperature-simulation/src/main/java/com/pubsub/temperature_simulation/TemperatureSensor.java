@@ -1,7 +1,6 @@
 package com.pubsub.temperature_simulation;
 
 import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
 import javax.jms.DeliveryMode;
 import javax.jms.JMSException;
 import javax.jms.MessageProducer;
@@ -9,8 +8,6 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
 
-import org.apache.activemq.ActiveMQConnection;
-import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.log4j.Logger;
 
 public class TemperatureSensor implements Runnable
@@ -27,10 +24,9 @@ public class TemperatureSensor implements Runnable
     public TemperatureSensor(String clientId, String topicName) {
 	this.clientId = clientId;
 	this.topicName = topicName;
-	ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_BROKER_URL);
 	try
 	{
-	    connection = connectionFactory.createConnection();
+	    connection = ActiveMQConnector.getInstance().getActiveMQConnection();
 	    connection.setClientID(clientId);
 	    session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 	    Topic topic = session.createTopic(topicName);
@@ -79,10 +75,6 @@ public class TemperatureSensor implements Runnable
 	catch (JMSException e)
 	{
 	    logger.error("Exception while sending temperature update to the server ", e);
-	}
-	finally
-	{
-	    closeConnection();
 	}
 	
     }

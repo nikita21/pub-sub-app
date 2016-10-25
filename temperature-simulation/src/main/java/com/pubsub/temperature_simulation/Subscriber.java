@@ -8,8 +8,6 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
 
-import org.apache.activemq.ActiveMQConnection;
-import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.log4j.Logger;
 
 public class Subscriber implements Runnable
@@ -17,27 +15,28 @@ public class Subscriber implements Runnable
     private static final Logger logger = Logger.getLogger(Subscriber.class);
     private String clientId;
     private String topicName;
+    private String subscriptionName;
     private Connection connection;
     private Session session;
     private MessageConsumer messageConsumer;
     
-    public Subscriber(String clientId, String topicName)
+    public Subscriber(String clientId, String topicName, String subscriptionName)
     {
 	this.clientId = clientId;
 	this.topicName = topicName;
+	this.subscriptionName = subscriptionName;
 	createSubscriber();
     }
     
     private void createSubscriber()
     {
-	ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_BROKER_URL);
 	try
 	{
-	    connection = connectionFactory.createConnection();
+	    connection = ActiveMQConnector.getInstance().getActiveMQConnection();
 	    connection.setClientID(clientId);
 	    session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 	    Topic topic = session.createTopic(topicName);
-	    messageConsumer = session.createConsumer(topic);
+	    messageConsumer = session.createDurableSubscriber(topic, subscriptionName);
 	    connection.start();
 	}
 	catch (JMSException e)
@@ -77,12 +76,7 @@ public class Subscriber implements Runnable
 	catch (JMSException e)
 	{
 	    logger.error("Exception while receiving message :", e);
-	}
-	finally
-	{
-	    closeConnection();
-	}
-	
+	}	
     }
     
     

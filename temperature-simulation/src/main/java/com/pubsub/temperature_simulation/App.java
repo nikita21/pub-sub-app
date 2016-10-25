@@ -13,16 +13,16 @@ public class App
         createPublishers("sensor-3", "MUMBAI_TEMPERATURE");
         createPublishers("sensor-4", "GURGAON_TEMPERATURE");
         
-        createSubscribers("subscriber-1", "BANGALORE_TEMPERATURE");
-        createSubscribers("subscriber-2", "BANGALORE_TEMPERATURE");
-        createSubscribers("subscriber-3", "UDAIPUR_TEMPERATURE");
-        createSubscribers("subscriber-4", "BANGALORE_TEMPERATURE");
-        createSubscribers("subscriber-5", "UDAIPUR_TEMPERATURE");
-        createSubscribers("subscriber-6", "MUMBAI_TEMPERATURE");
-        createSubscribers("subscriber-7", "GURGAON_TEMPERATURE");
-        createSubscribers("subscriber-8", "MUMBAI_TEMPERATURE");
-        createSubscribers("subscriber-9", "UDAIPUR_TEMPERATURE");
-        createSubscribers("subscriber-10", "GURGAON_TEMPERATURE");
+        createSubscribers("subscriber-1", "BANGALORE_TEMPERATURE", "bang-temp");
+        createSubscribers("subscriber-2", "BANGALORE_TEMPERATURE", "bang-temp");
+        createSubscribers("subscriber-3", "UDAIPUR_TEMPERATURE", "udr-temp");
+        createSubscribers("subscriber-4", "BANGALORE_TEMPERATURE", "bang-temp");
+        createSubscribers("subscriber-5", "UDAIPUR_TEMPERATURE", "udr-temp");
+        createSubscribers("subscriber-6", "MUMBAI_TEMPERATURE", "bom-temp");
+        createSubscribers("subscriber-7", "GURGAON_TEMPERATURE", "gur-temp");
+        createSubscribers("subscriber-8", "MUMBAI_TEMPERATURE", "bom-temp");
+        createSubscribers("subscriber-9", "UDAIPUR_TEMPERATURE", "udr-temp");
+        createSubscribers("subscriber-10", "GURGAON_TEMPERATURE", "gur-temp");
         
     }
     
@@ -31,8 +31,8 @@ public class App
 	executor.submit(new TemperatureSensor(clientId, topicName));
     }
     
-    private static void createSubscribers(String clientId, String topicName)
+    private static void createSubscribers(String clientId, String topicName, String subscriptionName)
     {
-	executor.submit(new Subscriber(clientId, topicName));
+	executor.submit(new Subscriber(clientId, topicName, subscriptionName));
     }
 }
