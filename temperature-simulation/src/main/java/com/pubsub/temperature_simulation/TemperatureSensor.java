@@ -47,18 +47,6 @@ public class TemperatureSensor implements Runnable
 	float randomTemperature = (float) (50.0 * Math.random() - 10.0);
 	return randomTemperature;
     }
-    
-    private void closeConnection()
-    {
-	try
-	{
-	    connection.close();
-	}
-	catch (JMSException e)
-	{
-	    logger.error("Exception while closing connection ", e);
-	}
-    }
 
     public void run()
     {

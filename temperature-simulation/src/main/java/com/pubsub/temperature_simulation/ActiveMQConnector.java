@@ -36,4 +36,17 @@ public class ActiveMQConnector
 	}
 	return connection;
     }
+    
+    public void closeConnection()
+    {
+	try
+	{
+	    logger.debug("Closing activemq connection....");
+	    connection.close();
+	}
+	catch (JMSException e)
+	{
+	    logger.error("Exception while closing connection ", e);
+	}
+    }
 }

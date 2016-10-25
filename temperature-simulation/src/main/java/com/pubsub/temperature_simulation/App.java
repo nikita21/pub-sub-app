@@ -8,6 +8,14 @@ public class App
     private static ExecutorService executor = Executors.newFixedThreadPool(10);
     public static void main( String[] args )
     {
+	Runtime.getRuntime().addShutdownHook(new Thread("CloseActiveMQConnection") {
+	    
+	    @Override
+	    public void run()
+	    {
+		ActiveMQConnector.getInstance().closeConnection();
+	    }
+	});
         createPublishers("sensor-1", "BANGALORE_TEMPERATURE");
         createPublishers("sensor-2", "UDAIPUR_TEMPERATURE");
         createPublishers("sensor-3", "MUMBAI_TEMPERATURE");

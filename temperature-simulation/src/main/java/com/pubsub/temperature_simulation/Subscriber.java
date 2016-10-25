@@ -44,18 +44,6 @@ public class Subscriber implements Runnable
 	    logger.error("Exception while creating consumer :" + e);
 	}
     }
-    
-    private void closeConnection()
-    {
-	try
-	{
-	    connection.close();
-	}
-	catch (JMSException e)
-	{
-	    logger.error("Exception while closing connection :" + e);
-	}
-    }
 
     public void run()
     {
