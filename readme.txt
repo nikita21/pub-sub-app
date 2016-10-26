@@ -12,3 +12,8 @@ Run the following command to compile the project :
 This will create a jar file in the target folder.
 Run the jar file or you can also run the Main class "App.java" from code editor. 
 
+
+Extra features : 
+Using persistent storage for messages, we can predict the temperature values based on the region and send updates to the interested clients.
+Creating another Runnable class which will take last 7 days data based on the topic(eg. BANGALORE_TEMPERATURE), and predict the value based on the average value of last 7 days and send updates to the subscribed clients.
+
