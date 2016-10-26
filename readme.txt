@@ -5,3 +5,10 @@ After downloading the following archive, go to the bin folder and run the follow
 
 go to the following link to check whether the activemq is up or not --> http://localhost:8161/.
 
+I am built a maven project.
+Run the following command to compile the project :
+> mvn clean install
+
+This will create a jar file in the target folder.
+Run the jar file or you can also run the Main class "App.java" from code editor. 
+

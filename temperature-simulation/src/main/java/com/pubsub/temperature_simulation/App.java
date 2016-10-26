@@ -16,21 +16,21 @@ public class App
 		ActiveMQConnector.getInstance().closeConnection();
 	    }
 	});
-        createPublishers("sensor-1", "BANGALORE_TEMPERATURE");
-        createPublishers("sensor-2", "UDAIPUR_TEMPERATURE");
-        createPublishers("sensor-3", "MUMBAI_TEMPERATURE");
-        createPublishers("sensor-4", "GURGAON_TEMPERATURE");
+        createPublishers("sensor-11", "BANGALORE_TEMPERATURE_1");
+        createPublishers("sensor-21", "UDAIPUR_TEMPERATURE_2");
+        createPublishers("sensor-31", "MUMBAI_TEMPERATURE_1");
+        createPublishers("sensor-41", "GURGAON_TEMPERATURE_1");
         
-        createSubscribers("subscriber-1", "BANGALORE_TEMPERATURE", "bang-temp");
-        createSubscribers("subscriber-2", "BANGALORE_TEMPERATURE", "bang-temp");
-        createSubscribers("subscriber-3", "UDAIPUR_TEMPERATURE", "udr-temp");
-        createSubscribers("subscriber-4", "BANGALORE_TEMPERATURE", "bang-temp");
-        createSubscribers("subscriber-5", "UDAIPUR_TEMPERATURE", "udr-temp");
-        createSubscribers("subscriber-6", "MUMBAI_TEMPERATURE", "bom-temp");
-        createSubscribers("subscriber-7", "GURGAON_TEMPERATURE", "gur-temp");
-        createSubscribers("subscriber-8", "MUMBAI_TEMPERATURE", "bom-temp");
-        createSubscribers("subscriber-9", "UDAIPUR_TEMPERATURE", "udr-temp");
-        createSubscribers("subscriber-10", "GURGAON_TEMPERATURE", "gur-temp");
+        createSubscribers("subscriber-11", "BANGALORE_TEMPERATURE_1", "bang-temp_1");
+        createSubscribers("subscriber-21", "BANGALORE_TEMPERATURE_1", "bang-temp_1");
+        createSubscribers("subscriber-31", "UDAIPUR_TEMPERATURE_2", "udr-temp_2");
+        createSubscribers("subscriber-41", "BANGALORE_TEMPERATURE_1", "bang-temp_1");
+        createSubscribers("subscriber-51", "UDAIPUR_TEMPERATURE_2", "udr-temp_2");
+        createSubscribers("subscriber-61", "MUMBAI_TEMPERATURE_1", "bom-temp_1");
+        createSubscribers("subscriber-71", "GURGAON_TEMPERATURE_1", "gur-temp_1");
+        createSubscribers("subscriber-81", "MUMBAI_TEMPERATURE_1", "bom-temp_1");
+        createSubscribers("subscriber-91", "UDAIPUR_TEMPERATURE_2", "udr-temp_2");
+        createSubscribers("subscriber-101", "GURGAON_TEMPERATURE_1", "gur-temp_1");
         
     }
     
